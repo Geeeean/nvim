@@ -73,6 +73,11 @@ map('n', '<leader>o', ':update<CR> :source<CR>', opts)
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
 
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
+vim.keymap.set('n', 'gr', vim.lsp.buf.references)
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
+
 -- =====================================================
 -- netrw settings
 -- =====================================================
