@@ -91,28 +91,13 @@ vim.pack.add({
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/mason-org/mason.nvim" },
     { src = "https://github.com/nvim-mini/mini.pick" },
-    -- { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+    { src = "https://github.com/goolord/alpha-nvim" }
 })
 
 require("mason").setup()
 require("oil").setup()
 require("mini.pick").setup()
---require("nvim-treesitter.configs").setup({
---    ensure_installed = {
---        "lua",
---        "python",
---        "javascript",
---        "typescript",
---        "html",
---        "css",
---        "json",
---        "bash",
---        "c",
---        "cpp",
---        "rust"
---    },
---    highlight = { enable = true }
---})
+require("alpha").setup(require("greeter").config)
 
 -- =====================================================
 -- lsp config
