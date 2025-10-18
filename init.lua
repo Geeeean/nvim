@@ -67,11 +67,12 @@ map('n', '<leader>pv', ':Oil<CR>', opts)
 -- Open terminal
 map('n', '<C-t>', ':terminal<CR>', opts)
 map("n", "<leader>pf", ":Pick files<CR>", opts)
-map("n", "<leader>pg", ":Pick grep_live<CR>", opts)
+map("n", "<leader>ps", ":Pick grep_live<CR>", opts)
 
 map('n', '<leader>o', ':update<CR> :source<CR>', opts)
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>ds", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>df", vim.lsp.buf.code_action)
 
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
@@ -106,3 +107,19 @@ vim.lsp.enable({ "lua_ls", "pyright", "clangd" })
 vim.diagnostic.config({
     signs = false,
 })
+
+vim.o.termguicolors = true
+
+local function set_transparent()
+  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+  vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+
+  vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
+  vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
+  vim.api.nvim_set_hl(0, "VertSplit", { bg = "none" })
+  vim.api.nvim_set_hl(0, "MsgArea", { bg = "none" })
+end
+
+vim.cmd([[autocmd ColorScheme * lua set_transparent()]])
+
+set_transparent()
