@@ -1,0 +1,20 @@
+{
+  "plugins": {
+    "alpha-nvim": {
+      "rev": "3979b01",
+      "src": "https://github.com/goolord/alpha-nvim"
+    },
+    "mason.nvim": {
+      "rev": "ad7146a",
+      "src": "https://github.com/mason-org/mason.nvim"
+    },
+    "mini.pick": {
+      "rev": "c48ce33",
+      "src": "https://github.com/nvim-mini/mini.pick"
+    },
+    "oil.nvim": {
+      "rev": "7e1cd77",
+      "src": "https://github.com/stevearc/oil.nvim"
+    }
+  }
+}

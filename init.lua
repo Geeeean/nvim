@@ -92,18 +92,45 @@ vim.pack.add({
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/mason-org/mason.nvim" },
     { src = "https://github.com/nvim-mini/mini.pick" },
-    { src = "https://github.com/goolord/alpha-nvim" }
+    { src = "https://github.com/goolord/alpha-nvim" },
+
+    { src = "https://github.com/hrsh7th/nvim-cmp" },
+    { src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
 })
 
 require("mason").setup()
 require("oil").setup()
 require("mini.pick").setup()
+
+local cmp = require('cmp')
+cmp.setup({
+    completion = {
+        autocomplete = false
+    },
+
+    snippet = {
+        expand = function(args)
+            vim.snippet.expand(args.body)
+        end,
+    },
+
+    mapping = cmp.mapping.preset.insert({
+        ['<C-x><C-o>'] = cmp.mapping.complete(),
+
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    }),
+
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+    })
+})
+
 require("alpha").setup(require("greeter").config)
 
 -- =====================================================
 -- lsp config
 -- =====================================================
-vim.lsp.enable({ "lua_ls", "pyright", "clangd" })
+vim.lsp.enable({ "lua_ls", "pyright", "clangd", "ts_ls", "tailwindcss", "html" })
 vim.diagnostic.config({
     signs = false,
 })
@@ -111,13 +138,13 @@ vim.diagnostic.config({
 vim.o.termguicolors = true
 
 local function set_transparent()
-  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-  vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 
-  vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
-  vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
-  vim.api.nvim_set_hl(0, "VertSplit", { bg = "none" })
-  vim.api.nvim_set_hl(0, "MsgArea", { bg = "none" })
+    vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
+    vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
+    vim.api.nvim_set_hl(0, "VertSplit", { bg = "none" })
+    vim.api.nvim_set_hl(0, "MsgArea", { bg = "none" })
 end
 
 vim.cmd([[autocmd ColorScheme * lua set_transparent()]])
