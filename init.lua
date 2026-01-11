@@ -25,6 +25,8 @@ vim.o.clipboard = "unnamed"  -- use system clipboard
 vim.o.winborder = "rounded"
 vim.o.guicursor = ""
 
+require("config.lazy")
+
 vim.cmd [[
   syntax on
   hi StatusLine guibg=NONE ctermbg=NONE
@@ -85,55 +87,38 @@ vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
 vim.g.netrw_sort_by = "name"
 vim.g.netrw_banner = false
 
+
 -- =====================================================
 -- plugins
 -- =====================================================
-vim.pack.add({
-    { src = "https://github.com/stevearc/oil.nvim" },
-    { src = "https://github.com/mason-org/mason.nvim" },
-    { src = "https://github.com/nvim-mini/mini.pick" },
-    { src = "https://github.com/goolord/alpha-nvim" },
-
-    { src = "https://github.com/hrsh7th/nvim-cmp" },
-    { src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
-})
-
-require("mason").setup()
-require("oil").setup()
-require("mini.pick").setup()
-
-local cmp = require('cmp')
-cmp.setup({
-    completion = {
-        autocomplete = false
-    },
-
-    snippet = {
-        expand = function(args)
-            vim.snippet.expand(args.body)
-        end,
-    },
-
-    mapping = cmp.mapping.preset.insert({
-        ['<C-x><C-o>'] = cmp.mapping.complete(),
-
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-    }),
-
-    sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-    })
-})
-
-require("alpha").setup(require("greeter").config)
+-- vim.pack.add({
+--     { src = "https://github.com/stevearc/oil.nvim" },
+--     { src = "https://github.com/mason-org/mason.nvim" },
+--     { src = "https://github.com/nvim-mini/mini.pick" },
+--     { src = "https://github.com/nvim-mini/mini.completion" },
+--     { src = "https://github.com/goolord/alpha-nvim" },
+--     { src = "https://github.com/luckasRanarison/tailwind-tools.nvim" },
+--     { src = "https://github.com/neovim/nvim-lspconfig" },
+-- })
+--
+-- require("mason").setup()
+-- require("oil").setup()
+-- require("mini.pick").setup()
+-- require("mini.completion").setup()
+--
+-- require("alpha").setup(require("greeter").config)
 
 -- =====================================================
 -- lsp config
 -- =====================================================
-vim.lsp.enable({ "lua_ls", "pyright", "clangd", "ts_ls", "tailwindcss", "html" })
+-- vim.lsp.enable({ "lua_ls", "pyright", "clangd", "ts_ls", "tailwindcss", "html", "cssls" })
 vim.diagnostic.config({
     signs = false,
 })
+
+-- require("tailwind-tools").setup({
+--   -- your configuration
+-- })
 
 vim.o.termguicolors = true
 
