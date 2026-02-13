@@ -25,6 +25,9 @@ return {
 
             vim.lsp.config("fantomas", {})
             vim.lsp.enable({ "fantomas" })
+
+            vim.lsp.config("rust_analyzer", {})
+            vim.lsp.enable({ "rust_analyzer" })
         end
     }
 }
